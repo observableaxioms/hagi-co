@@ -1,0 +1,37 @@
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 420px;
+  margin: 1rem 0 2rem;
+}
+
+label {
+  font-size: 0.9rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+input, select {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+}
+
+button {
+  margin-top: 1.25rem;
+  padding: 0.6rem 1rem;
+  font-family: inherit;
+  font-size: 1rem;
+  color: #fff;
+  background: #8b1a1a;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover { background: #6e1414; }
+
+#form-status { margin-top: 0.75rem; font-style: italic; }
