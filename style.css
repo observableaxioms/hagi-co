@@ -1,3 +1,50 @@
+body {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: #222;
+  background: #fffdf8;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.site-name {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #222;
+  text-decoration: none;
+}
+
+nav a {
+  margin-left: 1rem;
+  font-size: 0.95rem;
+}
+
+a { color: #8b1a1a; }
+a:hover { text-decoration: none; }
+
+h1 { font-size: 2rem; margin-bottom: 1rem; }
+h3 { margin-top: 2.5rem; font-size: 1.3rem; }
+h4 { margin-bottom: 0.25rem; }
+
+.product {
+  margin-bottom: 1.5rem;
+  padding-left: 1rem;
+  border-left: 3px solid #e8dcc8;
+}
+
+.meta { font-size: 0.9rem; color: #666; }
+.status { font-style: italic; }
+
 form {
   display: flex;
   flex-direction: column;
@@ -35,3 +82,44 @@ button {
 button:hover { background: #6e1414; }
 
 #form-status { margin-top: 0.75rem; font-style: italic; }
+
+footer {
+  margin-top: 3rem;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+
+dialog {
+  border: none;
+  border-radius: 8px;
+  padding: 0;
+  width: 90%;
+  max-width: 460px;
+  background: #fffdf8;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+}
+
+dialog::backdrop { background: rgba(0, 0, 0, 0.4); }
+
+.dialog-inner {
+  position: relative;
+  padding: 1.5rem 1.75rem;
+}
+
+.dialog-inner h3 { margin-top: 0; }
+.dialog-inner form { margin-bottom: 0; }
+
+.close-dialog {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  margin: 0;
+  padding: 0.25rem 0.5rem;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: #666;
+  background: none;
+}
+
+.close-dialog:hover { color: #222; background: none; }

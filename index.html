@@ -13,7 +13,7 @@
     <nav>
       <a href="#about">About</a>
       <a href="#products">Products</a>
-      <a href="#waitlist">Waitlist</a>
+      <a href="#waitlist" class="open-waitlist">Waitlist</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -80,37 +80,9 @@
         help investors decide where to commit capital.
       </p>
       <p class="meta"><span class="status">Status: Upcoming.</span>
-      <a href="#waitlist">Join the waitlist.</a></p>
+      <a href="#waitlist" class="open-waitlist">Join the waitlist.</a></p>
     </div>
 
-    <h3 id="waitlist">Join the waitlist</h3>
-    <p>
-      Be the first to know when the Critical Minerals Project Model launches,
-      and get early access to new datasets.
-    </p>
-    <form id="waitlist-form" action="https://formspree.io/f/xgaawdwv" method="POST">
-      <label for="name">Name</label>
-      <input id="name" name="name" type="text" required>
-
-      <label for="email">Email</label>
-      <input id="email" name="email" type="email" required>
-
-      <label for="organization">Organization (optional)</label>
-      <input id="organization" name="organization" type="text">
-
-      <label for="interest">I'm most interested in</label>
-      <select id="interest" name="interest">
-        <option>Critical Minerals Project Model</option>
-        <option>AI Compute Demand</option>
-        <option>U.S. Vacancy Data</option>
-        <option>All of the above</option>
-      </select>
-
-      <input type="hidden" name="_subject" value="New Nexum Labs waitlist signup">
-      <button type="submit">Join the waitlist</button>
-      <p id="form-status" role="status"></p>
-      <p class="meta">We'll only use your email to contact you about Nexum Labs.</p>
-    </form>
 
     <h3>How we work</h3>
     <p>
@@ -137,10 +109,57 @@
     <p>&copy; 2026 Nexum Labs</p>
   </footer>
 
+  <dialog id="waitlist-dialog">
+    <div class="dialog-inner">
+      <button type="button" class="close-dialog" aria-label="Close">&times;</button>
+      <h3>Join the waitlist</h3>
+      <form id="waitlist-form" action="https://formspree.io/f/xgaawdwv" method="POST">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" required>
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required>
+
+        <label for="organization">Organization (optional)</label>
+        <input id="organization" name="organization" type="text">
+
+        <label for="interest">I'm most interested in</label>
+        <select id="interest" name="interest">
+          <option>Critical Minerals Project Model</option>
+          <option>AI Compute Demand</option>
+          <option>U.S. Vacancy Data</option>
+          <option>All of the above</option>
+        </select>
+
+        <input type="hidden" name="_subject" value="New Nexum Labs waitlist signup">
+        <button type="submit">Join the waitlist</button>
+        <p id="form-status" role="status"></p>
+        <p class="meta">We'll only use your email to contact you about Nexum Labs.</p>
+      </form>
+    </div>
+  </dialog>
+
   <script>
+    const dialog = document.getElementById("waitlist-dialog");
     const form = document.getElementById("waitlist-form");
     const statusMsg = document.getElementById("form-status");
 
+    // Open the popup from any "Join the waitlist" link or button
+    document.querySelectorAll(".open-waitlist").forEach((el) => {
+      el.addEventListener("click", (event) => {
+        event.preventDefault();
+        statusMsg.textContent = "";
+        dialog.showModal();
+      });
+    });
+
+    // Close with the × button, or by clicking outside the popup
+    dialog.querySelector(".close-dialog").addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+
+    // Submit the form without leaving the page
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
       statusMsg.textContent = "Submitting...";
@@ -153,6 +172,7 @@
         if (response.ok) {
           form.reset();
           statusMsg.textContent = "Thanks! You're on the waitlist.";
+          setTimeout(() => dialog.close(), 2500);
         } else {
           statusMsg.textContent = "Something went wrong. Please email victoria@herwingsventures.com.";
         }
